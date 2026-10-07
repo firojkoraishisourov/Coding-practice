@@ -13,12 +13,18 @@ if(isNaN(income) || isNaN(numberOfExpenses) || income <= 0 || numberOfExpenses <
     
     //collect expenses dynamically
     for(let i = 1; i <= numberOfExpenses; i++){
+        const expenses = [];
         let expense = parseFloat(prompt(`Enter expense ${i}: `));
 
         if(isNaN(expense) || expense < 0){
             console.log(`Invalid input for expense ${i}. setting it to $0.`);
         } 
-        totalExpenses += expense;   
+        expenses.push(expense); 
+
+        //calculate total expenses using the array
+        for(let i = 0; i<expenses.length;i++){
+            totalExpenses += expenses[i];
+        }  
     }
 
     //tax deduction 10 % of income
