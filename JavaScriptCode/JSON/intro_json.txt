@@ -1,0 +1,11 @@
+//introduction
+//JSON - > javascript object notation
+//why JSON? JSON is a actually text or string format. It uses any language. it is not dependable on any programming language
+//Text-based formate, lightweight, language independence, to store and exchange data between client and server
+// JSON file extension -> .json
+// JSON basic structure -> object and array 
+// JSON value types -> string,numbers(int/float),boolean,null,objects,array
+
+
+//creating json data
+

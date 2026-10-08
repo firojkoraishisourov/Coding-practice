@@ -1,0 +1,42 @@
+
+{
+    "students" : [
+        {
+            "name" : "Firoj Koraishi",
+            "middleName" : null,
+            "age" : 31,
+            "cgpa" : 3.44,
+            "isRegistered" : true,
+            "languages" : ["Bengali","English","Hindi"],
+            "friends" : [
+                {
+                    "Name" : "Anar",
+                    "age" : 25
+                },
+                {
+                    "Name" : "Ruhul",
+                    "age" : 28
+                }
+            ]
+        },
+
+        {
+            "name" : "Rabeya Sultana",
+            "middleName" : null,
+            "age" : 30,
+            "cgpa" : 3.92,
+            "isRegistered" : false,
+            "languages" : ["Bengali","English","Finnish"],
+            "friends" : [
+                {
+                    "Name" : "Sakila",
+                    "age" : 23
+                },
+                {
+                    "Name" : "Jumur",
+                    "age" : 25
+                }
+            ]
+        }
+    ]
+}
