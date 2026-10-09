@@ -1,8 +1,26 @@
 
+//function to save budget data store to localStorage
+function saveBudgetToLocal(userBudget){
+    localStorage.setItem("userBudget", JSON.stringify(userBudget));
+}
+
+//function to rtrieve budget data from localStorage
+function getBudgetFromLocal(){
+    const saveBudget = localStorage.getItem("userBudget");
+    return saveBudget ? JSON.parse(saveBudget) : null;
+}
+
+
 //fucntion to get user input
 function getUserInput(promptMessage,isNumber = false){
     const userInput = prompt(promptMessage);
     return isNumber ? parseFloat(userInput) : userInput
+}
+
+//function to clear budget data from localStorage
+function clearBudgetToLocal(){
+    localStorage.removeItem('userBudget');
+    console.log('Budget data cleared from local storage. ');
 }
 
 function getExpenses (numberOfExpenses){
@@ -110,12 +128,18 @@ function calculateBudget(userBudget){
     //Determine the financial health status
     userBudget.financialStatus = getFinancialStatus(userBudget.savings);
 
+    saveBudgetToLocal(userBudget);
 }
 
 //Main function to run the budget tracker 
 function runBudgetTracker(){
+    let userBudget = getBudgetFromLocal();
 
-    let userBudget = {
+    if(userBudget){
+        console.log('Previous budget data loaded from local storage!');
+        displayResult(userBudget);
+    }else{
+        userBudget = {
         userName : '',
         income : 0,
         expenses : [],
@@ -126,22 +150,26 @@ function runBudgetTracker(){
         balance : 0,
         savings : 0,
         financialStatus : 0
-    };
+        };
 
-    userBudget.userName = getUserInput("Enter your name: ");
-    userBudget.income = getUserInput("Enter your total income: " , true);
-    userBudget.numberOfExpenses = getUserInput("How many expenses do you have? " , true);
+        userBudget.userName = getUserInput("Enter your name: ");
+        userBudget.income = getUserInput("Enter your total income: " , true);
+        userBudget.numberOfExpenses = getUserInput("How many expenses do you have? " , true);
 
 
-    //validate inputs to ensure they are number
-    if(isNaN(userBudget.income) || isNaN(userBudget.numberOfExpenses) || userBudget.income <= 0 || userBudget.numberOfExpenses < 0){
-        console.log('Invalid input. Please enter your valid numbers.');
-        return;
+        //validate inputs to ensure they are number
+        if(isNaN(userBudget.income) || isNaN(userBudget.numberOfExpenses) || userBudget.income <= 0 || userBudget.numberOfExpenses < 0){
+            console.log('Invalid input. Please enter your valid numbers.');
+            return;
+        }
+        else{
+            calculateBudget(userBudget);
+            displayResult(userBudget);
+        }
+
     }
-    else{
-        calculateBudget(userBudget);
-        displayResult(userBudget);
-    }
+    
+    
 }
 
 runBudgetTracker();
